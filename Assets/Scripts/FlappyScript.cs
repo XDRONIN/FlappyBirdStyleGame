@@ -85,7 +85,7 @@ public class FlappyScript : MonoBehaviour
         //just jump up and down on intro screen
         if (GameStateManager.GameState == GameState.Intro)
         {
-            if (GetComponent<Rigidbody2D>().velocity.y < -1) //when the speed drops, give a boost
+            if (GetComponent<Rigidbody2D>().linearVelocity.y < -1) //when the speed drops, give a boost
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, GetComponent<Rigidbody2D>().mass * 5500 * Time.deltaTime)); //lots of play and stop 
                                                         //and play and stop etc to find this value, feel free to modify
         }
@@ -111,7 +111,7 @@ public class FlappyScript : MonoBehaviour
 
     void BoostOnYAxis()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, VelocityPerJump);
+        GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, VelocityPerJump);
         GetComponent<AudioSource>().PlayOneShot(FlyAudioClip);
     }
 
@@ -122,7 +122,7 @@ public class FlappyScript : MonoBehaviour
     /// </summary>
     private void FixFlappyRotation()
     {
-        if (GetComponent<Rigidbody2D>().velocity.y > 0) flappyYAxisTravelState = FlappyYAxisTravelState.GoingUp;
+        if (GetComponent<Rigidbody2D>().linearVelocity.y > 0) flappyYAxisTravelState = FlappyYAxisTravelState.GoingUp;
         else flappyYAxisTravelState = FlappyYAxisTravelState.GoingDown;
 
         float degreesToAdd = 0;
